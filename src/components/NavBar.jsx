@@ -11,12 +11,12 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
+import { useNavigate } from "react-router-dom";
 
 const pages = ["Dashboard", "New Blog", "About"];
 const settings = ["My Blogs", "Profile", "Logout"];
 
-function ResponsiveAppBar() {
+const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -35,18 +35,22 @@ function ResponsiveAppBar() {
     setAnchorElUser(null);
   };
 
+  const navigate = useNavigate();
+
   return (
-    <AppBar sx={{bgcolor : 'orange'}} position="static">
+    <AppBar sx={{ bgcolor: "orange" }} position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}>
+          <Box sx={{ display: { xs: "none", md: "flex" }, mr: 1 , cursor:'pointer'}}>
             <img
-          width={'50px'}
-            src="https://clarusway.com/wp-content/uploads/2023/03/olive-spring-150x150.png"
-            alt=""
-          />
+            
+            onClick={()=> navigate('/')}
+              width={"50px"}
+              src="https://clarusway.com/wp-content/uploads/2023/03/olive-spring-150x150.png"
+              alt=""
+            />
           </Box>
-          
+
           <Typography
             variant="h6"
             noWrap
@@ -61,9 +65,7 @@ function ResponsiveAppBar() {
               color: "inherit",
               textDecoration: "none",
             }}
-          >
-            
-          </Typography>
+          ></Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -92,21 +94,35 @@ function ResponsiveAppBar() {
               onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: "block", md: "none" },
+               
               }}
             >
-              {pages.map((page) => (
+              <MenuItem onClick={() => {navigate("/") 
+               handleCloseNavMenu() } } >
+                <Typography>Dashboard</Typography>
+              </MenuItem>
+              <MenuItem onClick={() => {navigate("/newblog") 
+              handleCloseNavMenu()}}>
+                <Typography>NewBlog</Typography>
+              </MenuItem>
+              <MenuItem onClick={() => {navigate("/about")
+               handleCloseNavMenu() }}>
+                <Typography >About</Typography>
+              </MenuItem>
+
+              {/* {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
-              ))}
+              ))} */}
             </Menu>
           </Box>
-          <Box sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}>
+          <Box sx={{ display: { xs: "flex", md: "none" }, mr: 1 ,  cursor:'pointer' }}>
             <img
-          width={'50px'}
-            src="https://clarusway.com/wp-content/uploads/2023/03/olive-spring-150x150.png"
-            alt=""
-          />
+              width={"50px"}
+              src="https://clarusway.com/wp-content/uploads/2023/03/olive-spring-150x150.png"
+              alt=""
+            />
           </Box>
           {/* <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} /> */}
           <Typography
@@ -124,11 +140,20 @@ function ResponsiveAppBar() {
               color: "inherit",
               textDecoration: "none",
             }}
-          >
-            
-          </Typography>
+          ></Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
+
+          <MenuItem onClick={() =>{ handleCloseNavMenu()
+             navigate("/")}}>
+                <Typography>Dashboard</Typography>
+              </MenuItem>
+              <MenuItem onClick={() => navigate("/newblog")}>
+                <Typography>NewBlog</Typography>
+              </MenuItem>
+              <MenuItem onClick={() => navigate("/about")}>
+                <Typography>About</Typography>
+              </MenuItem>
+            {/* {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
@@ -136,7 +161,7 @@ function ResponsiveAppBar() {
               >
                 {page}
               </Button>
-            ))}
+            ))} */}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
@@ -161,6 +186,8 @@ function ResponsiveAppBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
+             
+
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}</Typography>
@@ -172,5 +199,5 @@ function ResponsiveAppBar() {
       </Container>
     </AppBar>
   );
-}
-export default ResponsiveAppBar;
+};
+export default NavBar;

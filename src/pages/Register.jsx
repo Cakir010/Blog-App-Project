@@ -5,28 +5,28 @@ import LockIcon from "@mui/icons-material/Lock";
 import { Formik } from "formik";
 
 import Grid from "@mui/material/Grid";
-import RegisterForm from '../components/auth/RegisterForm';
+import RegisterForm , { registerSchema } from "../components/auth/RegisterForm";
 import { Link } from "react-router-dom";
 import { Box } from "@mui/material";
 import image from "../assets/learning-and-5.png";
 
-// import useAuthCall from "../hooks/useAuthCall";
+import useAuthCalls from "../hooks/useAuthCalls";
 
 const Register = () => {
-//   const { register } = useAuthCall();
+    const { register } = useAuthCalls();
 
   return (
-    <Container maxWidth="lg" 
-    sx={{
+    <Container
+      maxWidth="lg"
+      sx={{
         height: "88vh",
-        
-      }}>
+      }}
+    >
       <Grid
         container
         justifyContent="center"
         direction="row-reverse"
         rowSpacing={{ sm: 3 }}
-       
       >
         <Grid item xs={12}>
           <Typography variant="h3" color="primary" align="center">
@@ -57,29 +57,27 @@ const Register = () => {
           <Formik
             initialValues={{
               username: "",
-              first_name: "",
-              last_name: "",
               email: "",
+              image: "",
+              bio: "",
               password: "",
             }}
-            // validationSchema={registerSchema}
+            validationSchema={registerSchema}
             onSubmit={(values, actions) => {
-            //   register({ ...values, password2: values.password });
+                register({ ...values, password2: values.password });
               actions.resetForm();
               actions.setSubmitting(false);
             }}
             component={(props) => <RegisterForm {...props} />}
           ></Formik>
           <Box sx={{ textAlign: "center", mt: 2 }}>
-            <Link to="/">Do you have an account?</Link>
+            <Link to="/login">Do you have an account?</Link>
           </Box>
         </Grid>
 
         <Grid item xs={12} sm={8} md={6}>
           <Container>
-            <img src={image} alt="" 
-            width={400} 
-            height= {290 }/>
+            <img src={image} alt="" width={400} height={290} />
           </Container>
         </Grid>
       </Grid>

@@ -12,6 +12,9 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Logout } from "@mui/icons-material";
+import useAuthCalls from "../hooks/useAuthCalls";
 
 const pages = ["Dashboard", "New Blog", "About"];
 const settings = ["My Blogs", "Profile", "Logout"];
@@ -19,6 +22,10 @@ const settings = ["My Blogs", "Profile", "Logout"];
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const { currentUser, image } = useSelector((state) => state.auth);
+
+  const { logout } = useAuthCalls();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -41,10 +48,15 @@ const NavBar = () => {
     <AppBar sx={{ bgcolor: "orange" }} position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box sx={{ display: { xs: "none", md: "flex" }, mr: 1 , cursor:'pointer'}}>
+          <Box
+            sx={{
+              display: { xs: "none", md: "flex" },
+              mr: 1,
+              cursor: "pointer",
+            }}
+          >
             <img
-            
-            onClick={()=> navigate('/')}
+              onClick={() => navigate("/")}
               width={"50px"}
               src="https://clarusway.com/wp-content/uploads/2023/03/olive-spring-150x150.png"
               alt=""
@@ -94,20 +106,31 @@ const NavBar = () => {
               onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: "block", md: "none" },
-               
               }}
             >
-              <MenuItem onClick={() => {navigate("/") 
-               handleCloseNavMenu() } } >
+              <MenuItem
+                onClick={() => {
+                  navigate("/");
+                  handleCloseNavMenu();
+                }}
+              >
                 <Typography>Dashboard</Typography>
               </MenuItem>
-              <MenuItem onClick={() => {navigate("/newblog") 
-              handleCloseNavMenu()}}>
+              <MenuItem
+                onClick={() => {
+                  navigate("/newblog");
+                  handleCloseNavMenu();
+                }}
+              >
                 <Typography>NewBlog</Typography>
               </MenuItem>
-              <MenuItem onClick={() => {navigate("/about")
-               handleCloseNavMenu() }}>
-                <Typography >About</Typography>
+              <MenuItem
+                onClick={() => {
+                  navigate("/about");
+                  handleCloseNavMenu();
+                }}
+              >
+                <Typography>About</Typography>
               </MenuItem>
 
               {/* {pages.map((page) => (
@@ -117,7 +140,13 @@ const NavBar = () => {
               ))} */}
             </Menu>
           </Box>
-          <Box sx={{ display: { xs: "flex", md: "none" }, mr: 1 ,  cursor:'pointer' }}>
+          <Box
+            sx={{
+              display: { xs: "flex", md: "none" },
+              mr: 1,
+              cursor: "pointer",
+            }}
+          >
             <img
               width={"50px"}
               src="https://clarusway.com/wp-content/uploads/2023/03/olive-spring-150x150.png"
@@ -142,17 +171,20 @@ const NavBar = () => {
             }}
           ></Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-
-          <MenuItem onClick={() =>{ handleCloseNavMenu()
-             navigate("/")}}>
-                <Typography>Dashboard</Typography>
-              </MenuItem>
-              <MenuItem onClick={() => navigate("/newblog")}>
-                <Typography>NewBlog</Typography>
-              </MenuItem>
-              <MenuItem onClick={() => navigate("/about")}>
-                <Typography>About</Typography>
-              </MenuItem>
+            <MenuItem
+              onClick={() => {
+                handleCloseNavMenu();
+                navigate("/");
+              }}
+            >
+              <Typography>Dashboard</Typography>
+            </MenuItem>
+            <MenuItem onClick={() => navigate("/newblog")}>
+              <Typography>NewBlog</Typography>
+            </MenuItem>
+            <MenuItem onClick={() => navigate("/about")}>
+              <Typography>About</Typography>
+            </MenuItem>
             {/* {pages.map((page) => (
               <Button
                 key={page}
@@ -167,33 +199,80 @@ const NavBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src={image}/>
               </IconButton>
             </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-             
-
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+            {currentUser && (
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                <MenuItem
+                  onClick={() => {
+                    navigate("/myblogs");
+                    handleCloseNavMenu();
+                  }}
+                >
+                  <Typography>My Blogs</Typography>
                 </MenuItem>
-              ))}
-            </Menu>
+                <MenuItem
+                  onClick={() => {
+                    navigate("/profile");
+                    handleCloseNavMenu();
+                  }}
+                >
+                  <Typography>Profile</Typography>
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    logout();
+                    handleCloseNavMenu();
+                  }}
+                >
+                  <Typography>Logout</Typography>
+                </MenuItem>
+              </Menu>
+            )}
+
+            {!currentUser && (
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                <MenuItem
+                  onClick={() => {
+                    navigate("/login");
+                    handleCloseNavMenu();
+                  }}
+                >
+                  <Typography>Login</Typography>
+                </MenuItem>
+              </Menu>
+            )}
           </Box>
         </Toolbar>
       </Container>

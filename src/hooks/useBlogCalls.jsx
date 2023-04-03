@@ -20,7 +20,11 @@ const useBlogCalls = () => {
     }
   };
 
-  return { getBlogsData };
+  const getCommentData = async () => {
+
+  }
+
+  return { getBlogsData , getCommentData};
 };
 
 export default useBlogCalls;

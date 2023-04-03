@@ -6,15 +6,36 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
-import { btnDetail, cardButton, iconStyle } from "../../styles/globalStyle";
+import { btnDetail, cardButton, cardStyle, iconStyle } from "../../styles/globalStyle";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import ThreePIcon from "@mui/icons-material/ThreeP";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Box } from "@mui/material";
+import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const Cards = ({ item }) => {
+  const {image , title , content , publish_date , author , id  } = item
+  const [like , setLike] = useState(false)
+  const [count , setCount] = useState(0)
+  const navigate = useNavigate()
+
+
+
+const handleLike = () => {
+if(!like){
+  setCount(count + 1)
+  setLike(!like)
+  
+}else{
+  setCount(count-1)
+  setLike(!like)
+}
+}
+
+
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={cardStyle}>
       <Typography
         component="div"
         sx={{ display: "flex", justifyContent: "center", mt: 2 }}
@@ -22,8 +43,8 @@ const Cards = ({ item }) => {
         <img
           height="150"
           src={
-            item.image
-              ? item.image
+            {image}
+              ?image
               : "https://www.w3schools.com/howto/img_avatar.png"
           }
           alt="img"
@@ -31,35 +52,36 @@ const Cards = ({ item }) => {
       </Typography>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {item.title}
+          {title}
         </Typography>
         <Typography
           sx={{ minHeight: "120px" }}
           variant="body2"
           color="text.secondary"
         >
-          {item.content}
+          {content}
         </Typography>
-        <Typography sx={{ mt: "3vh", mb: "5vh" }}>
+        <Typography sx={{ my:3}}>
           {item.publish_date}
         </Typography>
         <Typography sx={{ display: "flex" }}>
           {" "}
-          <AccountBoxIcon /> {item.author}
+          <AccountBoxIcon /> {author}
         </Typography>
       </CardContent>
       <CardActions sx={cardButton}>
         <Box sx={iconStyle}>
-          <Box sx={{display:'flex'}}> <ThumbUpAltIcon/>
-          <span>1</span></Box>
+          <Box  onClick={handleLike} sx={{display:'flex'}}> <ThumbUpAltIcon/>
+          <span>{count}</span></Box>
          <Box sx={{display:'flex'}}><ThreePIcon/>
-          <span>1</span></Box>
+          <span>2</span></Box>
           <Box sx={{display:'flex'}}><VisibilityIcon/>
-          <span>1</span></Box>
+          <span>4</span></Box>
           
         </Box>
-        <Button sx={btnDetail} variant="contained">
-          Contained
+        <Button onClick={()=> navigate(`/detail/${id}/`)}
+         sx={btnDetail} variant="contained">
+          READ MORE
         </Button>
       </CardActions>
     </Card>

@@ -13,6 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useAuthCalls from "../hooks/useAuthCalls";
+import logo from "../assets/logo.png";
 
 // const pages = ["Dashboard", "New Blog", "About"];
 // const settings = ["My Blogs", "Profile", "Logout"];
@@ -50,14 +51,17 @@ const NavBar = () => {
             sx={{
               display: { xs: "none", md: "flex" },
               mr: 1,
+              
               cursor: "pointer",
             }}
           >
             <img
               onClick={() => navigate("/")}
               width={"50px"}
-              src="https://clarusway.com/wp-content/uploads/2023/03/olive-spring-150x150.png"
-              alt=""
+              src={
+                currentUser.photoURL ||
+                "https://static.vecteezy.com/system/resources/previews/011/514/431/original/ninja-mascot-esport-logo-template-creative-ninja-logo-design-concepts-vector.jpg"
+              }
             />
           </Box>
 
@@ -147,7 +151,8 @@ const NavBar = () => {
           >
             <img
               width={"50px"}
-              src="https://clarusway.com/wp-content/uploads/2023/03/olive-spring-150x150.png"
+              
+              src="https://static.vecteezy.com/system/resources/previews/011/514/431/original/ninja-mascot-esport-logo-template-creative-ninja-logo-design-concepts-vector.jpg"
               alt=""
             />
           </Box>
@@ -197,7 +202,7 @@ const NavBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src={image}/>
+                <Avatar alt="Remy Sharp" src={image} />
               </IconButton>
             </Tooltip>
             {currentUser && (

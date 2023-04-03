@@ -2,7 +2,9 @@ import React, { useEffect } from 'react'
 
 import useBlogCalls from '../hooks/useBlogCalls'
 import { useSelector } from 'react-redux'
-import Card from '../components/blog/Card'
+import Cards from '../components/blog/Cards'
+import { Grid } from '@mui/material'
+import { flexCard } from '../styles/globalStyle'
 
 const Dashboard = () => {
 const {getBlogsData} = useBlogCalls()
@@ -12,11 +14,19 @@ getBlogsData('blogs')
 }, [])
 
   return (
-    <div>
+    <Grid container
+    //  justifyContent='center' 
+    //  alignItems='center'
+     sx={flexCard}
+    
+    > 
       {blogs.map((item) =>(
-      <Card item={item} />
+         <Grid item key={item.id}>
+        <Cards item={item}/>
+       </Grid>
+      
     ))}
-    </div>
+    </Grid>
   )
 }
 

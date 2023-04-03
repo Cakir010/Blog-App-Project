@@ -27,7 +27,7 @@ const useAuthCalls = () => {
       );
       dispatch(loginSuccess(data));
       toastSuccessNotify("Login performed");
-      navigate("/");
+      navigate(-1);
     } catch (error) {
       dispatch(fetchFail());
       toastErrorNotify("Login can not be performed");

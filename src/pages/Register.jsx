@@ -61,6 +61,7 @@ const Register = () => {
               image: "",
               bio: "",
               password: "",
+              
             }}
             validationSchema={registerSchema}
             onSubmit={(values, actions) => {

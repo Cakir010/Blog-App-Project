@@ -8,16 +8,14 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Logout } from "@mui/icons-material";
 import useAuthCalls from "../hooks/useAuthCalls";
 
-const pages = ["Dashboard", "New Blog", "About"];
-const settings = ["My Blogs", "Profile", "Logout"];
+// const pages = ["Dashboard", "New Blog", "About"];
+// const settings = ["My Blogs", "Profile", "Logout"];
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);

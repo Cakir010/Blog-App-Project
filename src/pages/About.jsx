@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-import image from "../assets/logo.png";
+import image from "../assets/logo1.png";
 import { Typography } from "@mui/material";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
@@ -36,7 +36,7 @@ const About = () => {
       }}
     >
       <Paper sx={flex} elevation={24}>
-        <img src={image} alt="" width={120} height={90} />
+        <img src={image} alt="" width={150} height={150} />
         <Typography sx={{ fontSize: "40px", color: "orange" }}>
           React Developer
         </Typography>

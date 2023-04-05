@@ -5,6 +5,12 @@ export const Image = {
   gap: 2,
 };
 
+export const DetailCard = { 
+  display:'flex',
+  justifyContent:'center',
+  alignItems:'center',
+}
+
 export const cardStyle = {
   cursor:'pointer',
   maxWidth: 345,

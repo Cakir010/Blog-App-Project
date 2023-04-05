@@ -13,7 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useAuthCalls from "../hooks/useAuthCalls";
-import logo from "../assets/logo.png";
+import logo1 from "../assets/logo1.png";
 
 // const pages = ["Dashboard", "New Blog", "About"];
 // const settings = ["My Blogs", "Profile", "Logout"];
@@ -58,10 +58,9 @@ const NavBar = () => {
             <img
               onClick={() => navigate("/")}
               width={"50px"}
-              src={
-                currentUser.photoURL ||
-                "https://static.vecteezy.com/system/resources/previews/011/514/431/original/ninja-mascot-esport-logo-template-creative-ninja-logo-design-concepts-vector.jpg"
-              }
+              src=
+               'https://clarusway.com/wp-content/uploads/2023/03/olive-150x150.png'
+              
             />
           </Box>
 
@@ -120,7 +119,7 @@ const NavBar = () => {
               </MenuItem>
               <MenuItem
                 onClick={() => {
-                  navigate("/login");
+                  navigate("/new-blog");
                   handleCloseNavMenu();
                 }}
               >
@@ -152,7 +151,7 @@ const NavBar = () => {
             <img
               width={"50px"}
               
-              src="https://static.vecteezy.com/system/resources/previews/011/514/431/original/ninja-mascot-esport-logo-template-creative-ninja-logo-design-concepts-vector.jpg"
+              src={logo1}
               alt=""
             />
           </Box>
@@ -182,7 +181,7 @@ const NavBar = () => {
             >
               <Typography>Dashboard</Typography>
             </MenuItem>
-            <MenuItem onClick={() => navigate("/login")}>
+            <MenuItem onClick={() => navigate("/new-blog")}>
               <Typography>NewBlog</Typography>
             </MenuItem>
             <MenuItem onClick={() => navigate("/about")}>

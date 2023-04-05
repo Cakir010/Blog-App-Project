@@ -22,7 +22,7 @@ export const registerSchema = object({
     .matches(/[A-Z]/, "Password bir büyük harf içermelidir")
     .matches(/[!,?{}><%&$#£+-.]+/, "Password bir özel karakter içermelidir"),
 });
-const SignUpForm = ({ values, handleChange, errors, touched, handleBlur }) => {
+const RegisterForm = ({ values, handleChange, errors, touched, handleBlur }) => {
   return (
     <div>
       <Form>
@@ -95,4 +95,4 @@ const SignUpForm = ({ values, handleChange, errors, touched, handleBlur }) => {
     </div>
   );
 };
-export default SignUpForm;
+export default RegisterForm;

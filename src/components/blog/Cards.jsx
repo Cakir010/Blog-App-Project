@@ -6,33 +6,29 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
-import { btnDetail, cardButton, cardStyle, iconStyle } from "../../styles/globalStyle";
+import {
+  btnDetail,
+  cardButton,
+  cardStyle,
+  iconStyle,
+} from "../../styles/globalStyle";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import ThreePIcon from "@mui/icons-material/ThreeP";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { Box } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import useBlogCalls from "../../hooks/useBlogCalls";
 
 const Cards = ({ item }) => {
-  const {image , title , content , publish_date , author , id  } = item
-  const [like , setLike] = useState(false)
-  const [count , setCount] = useState(0)
-  const navigate = useNavigate()
-
-
-
-const handleLike = () => {
-if(!like){
-  setCount(count + 1)
-  setLike(!like)
+  const { image, title, content, publish_date, author, id , likes } = item;
   
-}else{
-  setCount(count-1)
-  setLike(!like)
-}
-}
+  
+  const navigate = useNavigate();
+  const {getLike}  = useBlogCalls()
 
+  
 
   return (
     <Card sx={cardStyle}>
@@ -43,9 +39,7 @@ if(!like){
         <img
           height="150"
           src={
-            {image}
-              ?image
-              : "https://www.w3schools.com/howto/img_avatar.png"
+            { image } ? image : "https://www.w3schools.com/howto/img_avatar.png"
           }
           alt="img"
         />
@@ -61,9 +55,7 @@ if(!like){
         >
           {content}
         </Typography>
-        <Typography sx={{ my:3}}>
-          {item.publish_date}
-        </Typography>
+        <Typography sx={{ my: 3 }}>{item.publish_date}</Typography>
         <Typography sx={{ display: "flex" }}>
           {" "}
           <AccountBoxIcon /> {author}
@@ -71,16 +63,26 @@ if(!like){
       </CardContent>
       <CardActions sx={cardButton}>
         <Box sx={iconStyle}>
-          <Box  onClick={handleLike} sx={{display:'flex'}}> <ThumbUpAltIcon/>
-          <span>{count}</span></Box>
-         <Box sx={{display:'flex'}}><ThreePIcon/>
-          <span>2</span></Box>
-          <Box sx={{display:'flex'}}><VisibilityIcon/>
-          <span>4</span></Box>
-          
+          <Box onClick={()=>  getLike('likes' ,id) } sx={{ display: "flex" }}>
+            {" "}
+            <ThumbUpIcon />
+            <span>{likes}</span>
+          </Box>
+          <Box sx={{ display: "flex" }}>
+            <ThreePIcon />
+            {item.comment_count}
+            <span>2</span>
+          </Box>
+          <Box sx={{ display: "flex" }}>
+            <VisibilityIcon />
+            <span>4</span>
+          </Box>
         </Box>
-        <Button onClick={()=> navigate(`/detail/${id}/`)}
-         sx={btnDetail} variant="contained">
+        <Button
+          onClick={() => navigate(`/detail/${item.id}/`)}
+          sx={btnDetail}
+          variant="contained"
+        >
           READ MORE
         </Button>
       </CardActions>

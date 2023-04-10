@@ -21,13 +21,13 @@ const AppRouter = () => {
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/myblogs" element={<MyBlogs />} />
-          <Route path="/profile" element={<Profile />} />
 
           <Route path="/" element={<Dashboard />} />
           <Route path="" element={<PrivateRouter />}>
             <Route path="detail/:id" element={<Detail />} />
             <Route path="new-blog" element={<NewBlog />} />
+            <Route path="/myblogs" element={<MyBlogs />} />
+            <Route path="/profile" element={<Profile />} />
           </Route>
 
           <Route path="/about" element={<About />} />
@@ -40,3 +40,31 @@ const AppRouter = () => {
 };
 
 export default AppRouter;
+
+{
+  /* <BrowserRouter>
+<NavBar />
+<Routes>
+  <Route path="/register" element={<Register />} />
+  <Route path="/login" element={<Login />} />
+
+  <Route path="/" element={<Dashboard />} />
+  <Route path="" element={<PrivateRouter />}>
+    <Route path="new-blog" element={<NewBlog />} />
+  </Route>
+  <Route path="" element={<PrivateRouter />}>
+    <Route path="/myblogs" element={<MyBlogs />} />
+  </Route>
+  <Route path="" element={<PrivateRouter />}>
+    <Route path="/profile" element={<Profile />} />
+  </Route>
+  <Route path="" element={<PrivateRouter />}>
+    <Route path="detail/:id" element={<Detail />} />
+  </Route>
+
+  <Route path="/about" element={<About />} />
+  <Route path="*" element={<NotFound />} />
+</Routes>
+<Footer />
+</BrowserRouter> */
+}

@@ -10,7 +10,6 @@ import {
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 import { useNavigate } from "react-router";
 
-
 const useAuthCalls = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -28,15 +27,16 @@ const useAuthCalls = () => {
       dispatch(loginSuccess(data));
       toastSuccessNotify("Login performed");
       navigate(-1);
+      console.log(data);
     } catch (error) {
       dispatch(fetchFail());
       toastErrorNotify("Login can not be performed");
       console.log(error);
     }
   };
-  
+
   const register = async (userInfo) => {
-    dispatch(fetchStart())
+    dispatch(fetchStart());
     try {
       const { data } = await axios.post(`${BASE_URL}users/register/`, userInfo);
       dispatch(registerSuccess(data));
@@ -61,7 +61,7 @@ const useAuthCalls = () => {
       toastErrorNotify("logout can not be performed");
     }
   };
-  return { login, register , logout };
+  return { login, register, logout };
 };
 
-export default useAuthCalls
+export default useAuthCalls;

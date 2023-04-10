@@ -58,6 +58,7 @@ const NavBar = () => {
             <img
               onClick={() => navigate("/")}
               width={"50px"}
+              
               src=
                'https://clarusway.com/wp-content/uploads/2023/03/olive-150x150.png'
               

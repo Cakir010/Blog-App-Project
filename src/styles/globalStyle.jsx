@@ -5,6 +5,8 @@ export const Image = {
   gap: 2,
 };
 
+
+
 export const DetailCard = { 
   display:'flex',
   justifyContent:'center',
@@ -12,11 +14,41 @@ export const DetailCard = {
 }
 
 export const cardStyle = {
-  cursor:'pointer',
-  maxWidth: 345,
+  display:'flex',
+  flexWrap:'wrap',
+
+  // m: "10px",
+  // minheight: "500px",
+  // maxHeight: "500px",
+  
+  cursor: "pointer",
+  
+  
   boxShadow:
   "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset"
 }
+
+export const textTrunc = {
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  display: "-webkit-box",
+  WebkitLineClamp: "2",
+  WebkitBoxOrient: "vertical",
+};
+
+export const boxStyle = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  padding: "20px",
+  bgcolor: "white",
+  border: "2px solid white",
+  borderRadius: "10px",
+  boxShadow: "24px 12px 12px 12px",
+  mt:2,
+  mb:2,
+};
 
 export const cardButton = {
   display: "flex",
@@ -25,6 +57,19 @@ export const cardButton = {
   color: "gray",
 };
 
+
+export const styles = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 450,
+  bgcolor: "white",
+  border: "2px solid white",
+  borderRadius: "10px",
+  boxShadow: 24,
+  p: 4,
+};
 export const iconStyle = {
   
   display: "flex",
@@ -39,6 +84,7 @@ export const btnDetail = {
 };
 
 export const btnStyle = {
+ 
   cursor: "pointer",
   bgcolor: "gray",
   "&:hover": { color: "gray", bgcolor: "orange" },
@@ -52,18 +98,22 @@ export const flex = {
   gap: 2,
 };
 
+
 export const flexCard = {
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  gap: 2,
-  mt: "3rem",
+display:'flex',
+alignItems:'center',
+justifyContent:'center',
+m:4,
+
+
+
+
 };
 
 export const flexCenter = {
-  display: "flex",
-  justifyContent: "space-around",
-  width: "60%",
+  // display: "flex",
+  // justifyContent: "space-around",
+  // width: "60%",
 };
 
 export const specialGit = {

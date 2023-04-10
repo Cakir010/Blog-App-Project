@@ -1,27 +1,31 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Container, Grid, Typography } from "@mui/material";
 import React from "react";
+import { styles } from "../styles/globalStyle";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
+  const FooterStyle = {
+    width: "100%",
+    padding: "10px",
+    color: "white",
+    height: "14vh",
+    bgcolor: "orange",
+  };
   return (
-    <Box
-      sx={{
-        p: 2,
-        position: "fixed",
-        textAlign: "center",
-        bottom: "0",
-        bgcolor: "orange",
-        width: "100%",
-      }}
-    >
-      <Typography>Developed b FS Team</Typography>
-      <Typography>
-        Copyright ©{" "}
-        <a target="blank" href="https://github.com/Cakir010">
-          Cakirs{" "}
-        </a>{" "}
-        {""}2023
-      </Typography>
-    </Box>
+    <Container sx={FooterStyle} maxWidth="xl">
+    <Grid container justifyContent={"center"} alignItems={"center"}>
+      <Grid item xs={12} textAlign={"center"}>
+        <p>Front-End Developer </p>
+        <small>
+          Copyright ©{" "}
+          <Link color="inherit" href="https://github.com/Cakir010" target="true">
+            Cakir
+          </Link>{" "}
+          {new Date().getFullYear()}
+        </small>{" "}
+      </Grid>
+    </Grid>
+  </Container>
   );
 };
 

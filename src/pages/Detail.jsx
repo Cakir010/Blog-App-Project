@@ -1,24 +1,48 @@
-import React, { useEffect } from 'react'
-import useBlogCalls from '../hooks/useBlogCalls'
-import { useParams } from 'react-router'
-import { useSelector } from 'react-redux'
-import CommentCard from '../components/blog/CommentCard'
-
+import React, { useEffect, useState } from "react";
+import useBlogCalls from "../hooks/useBlogCalls";
+import { useParams } from "react-router";
+import { useSelector } from "react-redux";
+import CommentCard from "../components/blog/CommentCard";
+import { Box } from "@mui/material";
 
 const Detail = () => {
-    const{getCommet}=useBlogCalls()
-    const {details} = useSelector((state)=>state.blog)
-    const {id} = useParams()
-    useEffect(() => {
-    getCommet('blogs' , id)
-    }, [])
-console.log(details)
-console.log(id)
-  return (
-    <div>
-      <CommentCard details={details}/>
-    </div>
-  )
-}
+  const { getCommet } = useBlogCalls();
+  const { details } = useSelector((state) => state.blog);
+  const [showComment, setShowComment] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleOpenDelete = () => {
+    setOpenDelete(true);
+  };
+  const handleCloseDelete = () => {
+    setOpenDelete(false);
+  };
 
-export default Detail
+  const { id } = useParams();
+  useEffect(() => {
+    getCommet("blogs", id);
+  }, []);
+
+  return (
+    <Box>
+      <CommentCard
+        setOpen={setOpen}
+        open={open}
+        handleOpen={handleOpen}
+        handleClose={handleClose}
+        handleOpenDelete={handleOpenDelete}
+        handleCloseDelete={handleCloseDelete}
+        details={details}
+        showComment={showComment}
+      />
+    </Box>
+  );
+};
+
+export default Detail;

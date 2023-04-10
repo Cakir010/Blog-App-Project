@@ -4,12 +4,16 @@ import {
   getBlogs,
   getComments,
   getDetail,
+  getMyBlog
   
 } from "../features/blogSlice";
 import { useDispatch } from "react-redux";
 import useAxios from "./useAxios";
+import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
+import { useNavigate } from "react-router";
 
 const useBlogCalls = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const { axiosWithToken, axiosPublic } = useAxios();
 
@@ -68,7 +72,22 @@ const useBlogCalls = () => {
       dispatch(fetchFail());
     }
   };
-//!______________________________________________________________
+  //!===================POSTBLOG----NEWBLOG======================
+  const postBlog = async (info , url) => {
+    dispatch(fetchStart());
+    try {
+      const { data } = await axiosWithToken.post(`api/${url}/`, info );
+      
+      getBlogsData('url')
+      
+    } catch (error) {
+      console.log(error);
+      dispatch(fetchFail());
+    }
+  };
+
+
+//!___________________________GET-CATEGORİES____________________
   const getCategories = async (url, id  ) => {
     dispatch(fetchStart());
     try {
@@ -82,7 +101,54 @@ const useBlogCalls = () => {
     }
   };
 
-  return { getBlogsData, getCommet, getLike, postComments ,getCategories};
+
+  //!______________________getMyBlogData______________________
+  const getMyBlogData = async (url, id  ) => {
+    dispatch(fetchStart());
+    try {
+   const {data} =    await axiosWithToken.get(`api/${url}/?author=${id}`);
+    dispatch(getMyBlog({data}))
+      // getBlogsData('categories' )
+      
+    } catch (error) {
+      console.log(error);
+      dispatch(fetchFail());
+    }
+  };
+
+
+  //!-----------------------Delete----------
+const deleteData = async (url , id) => {
+dispatch(fetchStart())
+try {
+  await axiosWithToken.delete(`api/${url}/${id}` )
+  getBlogsData(url)
+
+} catch (error) {
+  console.log(error);
+      dispatch(fetchFail());
+}
+}
+
+
+
+  //!_______________________Put__________________________
+const putData = async (url , info) => {
+  dispatch(fetchStart())
+  try {
+    await axiosWithToken.put(`api/${url}/${info.id}` , info )
+    getBlogsData(url)
+    // navigate(-1)
+  } catch (error) {
+    console.log(error);
+    dispatch(fetchFail());
+  }
+}
+ 
+ 
+
+
+  return {putData , deleteData, getBlogsData, getCommet, getLike,postBlog,getMyBlogData, postComments ,getCategories };
 };
 
 export default useBlogCalls;

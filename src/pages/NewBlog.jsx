@@ -1,29 +1,29 @@
 import React, { useState } from "react";
 
-import BlogForm from "../components/blog/BlogForm";
-// import { Helmet } from "react-helmet";
 import useBlogCalls from "../hooks/useBlogCalls";
 import { Box } from "@mui/material";
+import NewBlogForm from "../components/blog/NewBlogForm";
 
 const initialState = {
   title: "",
   image: "",
-  category_name: "",
+  category: "",
   status: "",
   content: "",
 };
 
 const NewBlog = () => {
-  const { postComments } = useBlogCalls();
+  const { postBlog } = useBlogCalls();
+ 
+  // console.log(formData);
   const [formData, setFormData] = useState(initialState);
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    postComments(formData);
+    postBlog("blogs" , formData);
     setFormData(initialState);
   };
 
@@ -32,10 +32,10 @@ const NewBlog = () => {
       <Box>
         <title>BlogApp - New Blog</title>
       </Box>
-      <BlogForm
+      <NewBlogForm
         formData={formData}
         handleChange={handleChange}
-        handleSubmit={handleFormSubmit}
+        handleFormSubmit={handleFormSubmit}
         text="New"
       />
     </>

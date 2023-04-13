@@ -5,8 +5,9 @@ import { useSelector } from "react-redux";
 import CommentCard from "../components/blog/CommentCard";
 import { Box } from "@mui/material";
 
+
 const Detail = () => {
-  const { getCommet } = useBlogCalls();
+  const { getCommet , getBlogsData } = useBlogCalls();
   const { details } = useSelector((state) => state.blog);
   const [showComment, setShowComment] = useState(false);
   const [open, setOpen] = useState(false);
@@ -27,6 +28,7 @@ const Detail = () => {
   const { id } = useParams();
   useEffect(() => {
     getCommet("blogs", id);
+    getBlogsData('blogs')
   }, []);
 
   return (
@@ -40,6 +42,8 @@ const Detail = () => {
         handleCloseDelete={handleCloseDelete}
         details={details}
         showComment={showComment}
+        setShowComment={setShowComment}
+        
       />
     </Box>
   );

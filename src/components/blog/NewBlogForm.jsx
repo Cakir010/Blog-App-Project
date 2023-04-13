@@ -28,7 +28,7 @@ const style = {
 
 const NewBlogForm = ({
   formData,
-  handleFormSubmit,
+  handleSubmit,
   handleChange,
   text
   
@@ -47,7 +47,7 @@ const NewBlogForm = ({
       <Box>
         <Box
           component="form"
-          onSubmit={(e) => handleFormSubmit(e)}
+          onSubmit={(e) => handleSubmit(e)}
           sx={{ mt: 1 }}
         >
           <Typography

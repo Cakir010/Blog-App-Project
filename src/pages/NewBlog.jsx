@@ -17,11 +17,13 @@ const NewBlog = () => {
  
   // console.log(formData);
   const [formData, setFormData] = useState(initialState);
+  
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleFormSubmit = (e) => {
+  
+  const handleSubmit = (e) => {
     e.preventDefault();
     postBlog("blogs" , formData);
     setFormData(initialState);
@@ -35,7 +37,7 @@ const NewBlog = () => {
       <NewBlogForm
         formData={formData}
         handleChange={handleChange}
-        handleFormSubmit={handleFormSubmit}
+        handleSubmit={handleSubmit}
         text="New"
       />
     </>

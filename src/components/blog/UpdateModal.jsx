@@ -22,12 +22,12 @@ const {putData  }= useBlogCalls()
   const handleChange = (e) => {
     // putData('url' , id )
     const { name, value } = e.target;
-    setFormData({ ...info, [name]: value });
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    putData('blogs' , formData.id , formData);
+    putData('blogs' , formData);
     handleClose();
   };
 

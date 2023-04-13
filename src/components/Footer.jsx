@@ -1,10 +1,11 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
 import React from "react";
-import { styles } from "../styles/globalStyle";
+// import styles from '../styles/globalStyle'
 import { Link } from "react-router-dom";
+import { styles } from "../styles/globalStyle";
 
 const Footer = () => {
-  const FooterStyle = {
+  const styles = {
     width: "100%",
     padding: "10px",
     color: "white",
@@ -12,7 +13,7 @@ const Footer = () => {
     bgcolor: "orange",
   };
   return (
-    <Container sx={FooterStyle} maxWidth="xl">
+    <Container sx={styles} maxWidth="xl">
     <Grid container justifyContent={"center"} alignItems={"center"}>
       <Grid item xs={12} textAlign={"center"}>
         <p>Front-End Developer </p>

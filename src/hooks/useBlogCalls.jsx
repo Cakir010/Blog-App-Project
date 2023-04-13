@@ -4,7 +4,7 @@ import {
   getBlogs,
   getComments,
   getDetail,
-  getMyBlog
+  getMyBlog,
   
 } from "../features/blogSlice";
 import { useDispatch } from "react-redux";
@@ -32,6 +32,8 @@ const useBlogCalls = () => {
       console.log(error);
     }
   };
+
+  
   //!_____________________________GETCOMMENT_____________________________
 
   const getCommet = async (url, id) => {
@@ -51,7 +53,7 @@ const useBlogCalls = () => {
     dispatch(fetchStart());
     try {
       const { data } = await axiosWithToken.post(`api/${url}/${id}/`);
-   
+      console.log(data);
       getBlogsData("blogs");
     } catch (error) {
       console.log(error);
@@ -73,12 +75,12 @@ const useBlogCalls = () => {
     }
   };
   //!===================POSTBLOG----NEWBLOG======================
-  const postBlog = async (info , url) => {
+  const postBlog = async (url , info) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axiosWithToken.post(`api/${url}/`, info );
+       await axiosWithToken.post(`api/${url}/`, info );
       
-      getBlogsData('url')
+      getBlogsData(url)
       
     } catch (error) {
       console.log(error);
@@ -123,6 +125,7 @@ dispatch(fetchStart())
 try {
   await axiosWithToken.delete(`api/${url}/${id}` )
   getBlogsData(url)
+  navigate(-1)
 
 } catch (error) {
   console.log(error);
@@ -130,14 +133,13 @@ try {
 }
 }
 
-
-
   //!_______________________Put__________________________
 const putData = async (url , info) => {
   dispatch(fetchStart())
   try {
-    await axiosWithToken.put(`api/${url}/${info.id}` , info )
-    getBlogsData(url)
+    const {data} = await axiosWithToken.put(`api/${url}/${info.id}` , info )
+    getBlogsData('blogs')
+    dispatch(getBlogs({data}))
     // navigate(-1)
   } catch (error) {
     console.log(error);

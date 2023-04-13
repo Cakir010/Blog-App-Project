@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import useBlogCalls from "../hooks/useBlogCalls";
 import Cards from "../components/blog/Cards";
 import { useSelector } from "react-redux";
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { flexCard } from "../styles/globalStyle";
 
 const Dashboard = () => {
@@ -14,15 +14,15 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Grid sx={flexCard} >
+      <Box  >
       
       
         {blogs.map((item) => (
-          <Grid  item key={item.id}>
+          <Box  item key={item.id}>
             <Cards item={item} />
-          </Grid>
+          </Box>
         ))}
-      </Grid>
+      </Box>
     </div>
   );
 };

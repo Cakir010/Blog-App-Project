@@ -5,7 +5,13 @@ export const Image = {
   gap: 2,
 };
 
-
+export const textTrunc = {
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  display: "-webkit-box",
+  WebkitLineClamp: "2",
+  WebkitBoxOrient: "vertical",
+};
 
 export const DetailCard = { 
   display:'flex',
@@ -14,12 +20,12 @@ export const DetailCard = {
 }
 
 export const cardStyle = {
-  display:'flex',
-  flexWrap:'wrap',
+  // display:'flex',
+  // flexWrap:'wrap',
 
-  // m: "10px",
-  // minheight: "500px",
-  // maxHeight: "500px",
+  m: "10px",
+  minheight: "100%",
+  maxHeight: "100%",
   
   cursor: "pointer",
   
@@ -28,13 +34,6 @@ export const cardStyle = {
   "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset"
 }
 
-export const textTrunc = {
-  overflow: "hidden",
-  textOverflow: "ellipsis",
-  display: "-webkit-box",
-  WebkitLineClamp: "2",
-  WebkitBoxOrient: "vertical",
-};
 
 export const boxStyle = {
   display: "flex",
@@ -73,12 +72,17 @@ export const styles = {
 export const iconStyle = {
   
   display: "flex",
-  justifyContent: "space-between",
+  
   gap: 3,
   
 };
+export const CardBlog = {
+  display: "flex",
+  flexDirection: "column",
+};
 
 export const btnDetail = {
+  height:'100%' ,
   bgcolor: "orange",
   "&:hover": { color: "orange", bgcolor: "lightblue" },
 };
@@ -101,9 +105,12 @@ export const flex = {
 
 export const flexCard = {
 display:'flex',
+flexWrap:'wrap',
 alignItems:'center',
 justifyContent:'center',
 m:4,
+
+
 
 
 
